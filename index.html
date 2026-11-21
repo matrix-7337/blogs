@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="NULLBYTE // LOG - CTF writeups, security notes and experiments.">
+  <title>NULLBYTE // LOG</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script>try{var t=localStorage.getItem("nullbyte-theme");if(t==="dark"||t==="light"||t==="darkblue")document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 2h6v2H5zM3 4h10v2H3zM1 6h14v9H1zM6 9h4v6H6z"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 2h5v2H1zM1 4h14v10H1zM3 7h10v5H3z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 16 16"><path d="M3 1h2v3H3zM11 1h2v3h-2z"/><path fill-rule="evenodd" d="M1 4h14v11H1zM3 6h10v2H3zM3 9h10v4H3z"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 1h8v2h2v2h2v2h2v8H9v-2H7V9H5V7H1zM3 3h3v2H3z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 16 16"><path d="M5 1h6v4H5zM6 6h4v2H6zM3 8h10v7H3zM2 12h12v3H2z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 1h6v2H4zM2 3h2v6H2zM4 9h6v2H4zM10 3h2v6h-2zM6 4h4v5H6z"/><path d="M10 11h2v2h-2zM12 13h2v2h-2z"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 16 16"><path d="M2 1h2v14H2zM5 2h9v2H5zM5 4h7v2H5zM10 4h4v4h-4z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2 2h5v2H2zM2 4h12v11H2zM4 6h8v2H4zM4 9h8v1H4zM4 11h6v1H4z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 16 16"><path d="M5 2h2v2H5zM3 4h2v2H3zM1 6h2v4H1zM3 10h2v2H3zM5 12h2v2H5zM9 2h2v2H9zM11 4h2v2h-2zM13 6h2v4h-2zM11 10h2v2h-2zM9 12h2v2H9z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 1h6v2H5zM3 3h10v2H3zM1 5h2v6H1zM3 11h10v2H3zM5 13h6v2H5zM7 4h2v5H7zM9 8h3v2H9z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 16 16"><path d="M7 1h2v3H7zM5 4h6v2H5zM3 6h10v2H3zM1 6h2v2H1zM13 6h2v2h-2zM4 8h2v2H4zM10 8h2v2h-2zM6 10h4v2H6zM4 12h2v2H4zM10 12h2v2h-2z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 1h6v2H5zM3 3h10v2H3zM1 5h2v6H1zM3 11h10v2H3zM5 13h6v2H5zM5 5h6v6H5zM7 7h2v2H7z"/></symbol>
+    <symbol id="i-key" viewBox="0 0 16 16"><path d="M3 1h6v2H3zM1 3h2v5H1zM3 8h4v2H3zM7 6h2v2H7zM9 8h2v2H9zM11 6h4v4h-4zM11 10h2v2h-2z"/></symbol>
+    <symbol id="i-tools" viewBox="0 0 16 16"><path d="M1 1h4v2H1zM5 3h2v2H5zM7 5h2v2H7zM9 7h2v2H9zM11 9h4v5h-4zM9 1h4v2H9zM11 3h4v2h-4zM7 13h4v2H7z"/></symbol>
+    <symbol id="i-rss" viewBox="0 0 16 16"><path d="M2 11h3v3H2zM2 6h2v2H2zM4 8h2v2H4zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM8 8h2v2H8zM8 2h2v2H8zM10 4h2v2h-2zM12 6h2v2h-2z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M1 7h10v2H1zM9 4h2v3H9zM11 6h2v3h-2zM9 9h2v3H9z"/></symbol>
+    <symbol id="i-up" viewBox="0 0 16 16"><path d="M7 1h2v2H7zM5 3h6v2H5zM3 5h10v2H3zM7 7h2v8H7z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 1h9v9H1zM3 3h5v5H3zM6 6h9v9H6zM8 8h5v5H8z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 1h2v2H4zM10 1h2v2h-2zM3 3h10v2H3zM2 5h12v6H2zM3 11h4v2H3zM9 11h4v2H9zM5 13h6v2H5zM5 6h2v2H5zM9 6h2v2H9z"/></symbol>
+    <symbol id="i-twitter" viewBox="0 0 16 16"><path d="M1 1h4v2H1zM2 3h4v2H2zM4 5h4v2H4zM6 7h4v2H6zM8 9h4v2H8zM10 11h4v2h-4zM12 13h3v2h-3zM11 1h3v2h-3zM10 3h3v2h-3zM8 5h3v2H8zM6 9h3v2H6zM4 11h3v2H4zM2 12h3v2H2z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 1h6v2H5zM3 3h10v2H3zM2 5h12v6H2zM3 11h10v2H3zM5 13h6v2H5zM7 2h2v12H7zM3 7h10v2H3z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 16 16"><path d="M7 0h2v3H7zM6 3h4v2H6zM4 5h8v6H4zM6 11h4v2H6zM7 13h2v3H7zM0 7h3v2H0zM3 6h2v4H3zM11 6h2v4h-2zM13 7h3v2h-3zM1 2h2v2H1zM13 2h2v2h-2zM1 12h2v2H1zM13 12h2v2h-2z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 16 16"><path d="M8 0h4v2H8zM5 2h4v2H5zM3 4h4v2H3zM2 6h3v4H2zM3 10h3v2H3zM5 12h4v2H5zM9 14h3v2H9zM11 12h2v2h-2zM13 9h2v3h-2zM14 6h2v3h-2zM13 3h2v3h-2z"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 16 16"><path d="M7 0h2v5H7zM7 11h2v5H7zM0 7h5v2H0zM11 7h5v2h-5zM2 2h3v2H2zM11 2h3v2h-3zM2 12h3v2H2zM11 12h3v2h-3zM6 6h4v4H6z"/></symbol>
+  </svg>
+
+  <div class="winter-fx" aria-hidden="true">
+    <div class="fog"></div>
+    <div class="snow" id="snow"></div>
+  </div>
+
+  <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-top">
+        <img class="pfp" id="pfp" src="assets/avatar.svg" alt="Portrait of the author">
+        <div class="side-name" id="side-name">nullbyte</div>
+        <p class="side-tagline" id="side-tagline">CTF player. Breaks things, writes it down.</p>
+      </div>
+
+      <nav class="side-nav" id="nav" aria-label="Main navigation">
+        <a href="#/" data-nav="home"><svg class="pi" aria-hidden="true"><use href="#i-home"></use></svg><span>HOME</span></a>
+        <a href="#/category" data-nav="category"><svg class="pi" aria-hidden="true"><use href="#i-folder"></use></svg><span>CATEGORY</span></a>
+        <a href="#/archive" data-nav="archive"><svg class="pi" aria-hidden="true"><use href="#i-calendar"></use></svg><span>ARCHIVE</span></a>
+        <a href="#/about" data-nav="about"><svg class="pi" aria-hidden="true"><use href="#i-user"></use></svg><span>ABOUT</span></a>
+        <a href="#/tags" data-nav="tags"><svg class="pi" aria-hidden="true"><use href="#i-tag"></use></svg><span>TAGS</span></a>
+      </nav>
+
+      <div class="side-bottom">
+        <button type="button" class="side-search" id="search-trigger" aria-label="Open search (press /)">
+          <svg class="pi" aria-hidden="true"><use href="#i-search"></use></svg><span>SEARCH</span><kbd>/</kbd>
+        </button>
+        <div class="side-socials">
+          <a id="social-github" href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="pi pi-lg" aria-hidden="true"><use href="#i-github"></use></svg></a>
+          <a id="social-twitter" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><svg class="pi pi-lg" aria-hidden="true"><use href="#i-twitter"></use></svg></a>
+          <a id="social-website" href="https://example.com/" target="_blank" rel="noopener noreferrer" aria-label="Personal website"><svg class="pi pi-lg" aria-hidden="true"><use href="#i-globe"></use></svg></a>
+          <button type="button" class="theme-switch" id="theme-toggle" aria-label="Switch to dark theme"><svg class="pi pi-lg" aria-hidden="true"><use id="theme-icon" href="#i-moon"></use></svg></button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="content">
+      <main id="app" class="wrap" tabindex="-1"></main>
+      <footer class="site-footer wrap">
+        <span>© <span id="year"></span> <b id="footer-name">NULLBYTE</b></span>
+        <a href="#" id="rss-link" download="nullbyte.xml"><svg class="pi" aria-hidden="true"><use href="#i-rss"></use></svg> RSS</a>
+      </footer>
+    </div>
+  </div>
+
+  <button type="button" class="to-top" id="to-top" aria-label="Back to top"><svg class="pi pi-lg" aria-hidden="true"><use href="#i-up"></use></svg></button>
+
+  <div class="search-overlay" id="search-overlay" hidden>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search posts">
+      <div class="search-panel-head">
+        <span><svg class="pi" aria-hidden="true"><use href="#i-search"></use></svg> SEARCH THE ARCHIVE</span>
+        <button type="button" id="search-close" aria-label="Close search">✕</button>
+      </div>
+      <input type="search" id="search-input" placeholder="try: sqli, jwt, forensics..." autocomplete="off" spellcheck="false">
+      <div class="search-hint">ESC TO CLOSE · RESULTS UPDATE AS YOU TYPE</div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <script>window.BLOG_POSTS = [];</script>
+  <script src="content/site.js"></script>
+  <script src="content/taxonomy.js"></script>
+  <script src="content/posts-manifest.js"></script>
+  <script src="assets/markdown.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+      var source = new EventSource("/__live-reload");
+      source.addEventListener("reload", function () { location.reload(); });
+    }
+  </script>
+</body>
+</html>

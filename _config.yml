@@ -1,0 +1,6 @@
+title: NULLBYTE // LOG
+markdown: kramdown
+exclude:
+  - tools
+  - package.json
+  - content/posts-manifest.js
